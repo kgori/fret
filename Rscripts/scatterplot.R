@@ -5,7 +5,7 @@ mypl <- function(d, xlab="", ylab="", title="") {
   	"#137b6a", "#20CDB0", "#79e1d0", 
   	"#6a9013", "#B0F020", "#d0f679", 
   	"#906a13", "#F0B020", "#f6d079")
-  labels <- c(
+  labels <- c( #placeholders
   	"a", "b", "c",
   	"d", "e", "f",
   	"g", "h", "i", 
