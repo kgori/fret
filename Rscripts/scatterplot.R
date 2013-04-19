@@ -26,6 +26,7 @@ mypl <- function(d, datatype="dna", xlab="", ylab="", title="") {
     labs(title=title, x="vs Ferret  /PAM", y="vs Mouse  /PAM") +
     geom_abline(colour='red', linetype='dashed', size=0.5) +
     scale_colour_manual(values = colours) +
+    geom_rug(col=rgb(0.35,0.35,0.35,alpha=0.2), linetype='BF') +
     theme_bw()
   return(p)
 }
