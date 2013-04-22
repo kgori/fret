@@ -27,10 +27,45 @@ prep.data <- function(data, datatype, quartile, magnitude) {
   HumanFerretDistance <- as.numeric(as.character(d$HUMAN.FERRET.DIST))
   HumanMouseDistance <- as.numeric(as.character(d$HUMAN.MOUSE.DIST))
   # size <- rep.int(1, nrow(d))
-  size <- rep(0.1, nrow(d))
+  size <- rep(1, nrow(d))
   dataframe <- data.frame(id, method, quartile, HumanFerretDistance, HumanMouseDistance, size) #id time colour x y size
   colnames(dataframe) <- c("id", "time", "quartile", "HumanFerretDistance", "HumanMouseDistance", "size")
   return(dataframe)
+}
+
+prep.bubble <- function(data, datatype) {
+
+  d <- subset(data, DATATYPE==datatype)
+  id <- d$GENE.NAME
+  colour <- as.numeric((3*(d$QUANTS-1))+d$MAGQ)
+  HumanFerretDistance <- as.numeric(as.character(d$HUMAN.FERRET.DIST))
+  HumanMouseDistance <- as.numeric(as.character(d$HUMAN.MOUSE.DIST))
+  dataframe <- data.frame(id, HumanFerretDistance, HumanMouseDistance, colour) #id time colour x y size
+  colnames(dataframe) <- c("id", "HumanFerretDistance", "HumanMouseDistance", "colour")
+  return(dataframe)
+}
+
+bubble2 <- function(data, datatype, bubbleSize=5) {
+  require(googleVis)
+  data.subset <- prep.bubble(data, datatype)
+  data.subset <- data.subset[order(data.subset$colour), ]
+  colours.JSON <- "['#1D2690', '#3040F0', '#838CF6', '#137b6a', '#20CDB0', '#79e1d0', '#6a9013', '#B0F020', '#d0f679', '#906a13', '#F0B020', '#f6d079']"
+  max.value <- max(data.subset$HumanFerretDistance, data.subset$HumanMouseDistance)
+
+  M <- gvisBubbleChart(data.subset,
+    xvar="HumanFerretDistance", 
+    yvar="HumanMouseDistance",
+    colorvar="colour",
+    options=list(height=800, 
+      width=1000, 
+      sizeAxis=paste("{minvalue: 1, minSize: 1, maxSize: ", bubbleSize,"}", sep=""),
+      colors=colours.JSON,
+      bubble="{textStyle: {color: 'none'}, stroke: 'none'}", sep="",
+      hAxis=paste("{maxValue: ", max.value,"}", sep=""),
+      vAxis=paste("{maxValue: ", max.value,"}", sep=""))
+    )
+
+  return(M)
 }
 
 motion <- function(data) {
@@ -59,7 +94,8 @@ bubble <- function(data, datatype, quartile, magnitude, bubbleSize=15) {
   data.subset <- prep.data(data, datatype, quartile, magnitude)
   colour <- colours[ (3*(quartile-1) + magnitude) ]
 
-  M <- gvisBubbleChart(data, 
+
+  M <- gvisBubbleChart(data.subset, 
     xvar="HumanFerretDistance", 
     yvar="HumanMouseDistance", 
     sizevar="size",
@@ -75,6 +111,7 @@ bubble <- function(data, datatype, quartile, magnitude, bubbleSize=15) {
 
   return(M)  
 }
+
 
 scatter <- function(d, datatype="dna", xlab="", ylab="", title="") {
   require(ggplot2)
