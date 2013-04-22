@@ -1,4 +1,59 @@
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
 body {
-  font-family: 'Droid sans', sans-serif;
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+   color: rgba(15,15,15, 1);
+}
+
+h1 {
+
+}
+
+.button {
+	/*background*/
+	height: 20px;
+	width: auto;
+	background: #FFFFFF;
+	margin: 4px 4px 4px 4px;
+	padding: 6px;
+	border: 1px 1px 1px 1px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 5px;
+
+	/*text*/
+	color: rgba(25,25,25, 0.8);
+	text-align: center;
+	font-weight: bold;
+}
+
+a.button:hover {
+	background: #F4F4F4;
+	color: rgba(25,25,25, 0.7);
+}
+
+h1 a {
+	/*float: right;*/
+	font-size: 18px;
+}
+
+.link {
+	font-size: 16px;
+	color: rgba(0, 0, 238, 1);
+}
+
+a.link:hover {
+	background: #D8F0FF;
+}
+
+ul {
+	list-style-type: none;
+	margin-left: 0;
+}
+
+
+ul li {
+	display: inline-block;
+	position: relative;
+	z-index: 0;
+	margin: 10px 40px 10px 20px;
 }
