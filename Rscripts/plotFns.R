@@ -1,6 +1,9 @@
+this.dir <- dirname(parent.frame(2)$ofile)
+parent.dir <- dirname(this.dir)
+data.file <- file.path(parent.dir, 'data', 'FerretDataFrame.tsv')
+
 load.data <- function() {
-  path <- file.path('..', 'data', 'FerretDataFrame.tsv')
-  d <- read.delim(path)
+  d <- read.delim(data.file)
   return(d)
 }
 
