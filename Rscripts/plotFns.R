@@ -41,8 +41,8 @@ prep.bubble <- function(data, datatype) {
   size <- as.numeric(d$LUNG.ENRICHMENT)
   HumanFerretDistance <- as.numeric(as.character(d$HUMAN.FERRET.DIST))
   HumanMouseDistance <- as.numeric(as.character(d$HUMAN.MOUSE.DIST))
-  dataframe <- data.frame(id, HumanFerretDistance, HumanMouseDistance, colour) #id time colour x y size
-  colnames(dataframe) <- c("id", "HumanFerretDistance", "HumanMouseDistance", "colour")
+  dataframe <- data.frame(id, HumanFerretDistance, HumanMouseDistance, colour, size) #id time colour x y size
+  colnames(dataframe) <- c("id", "HumanFerretDistance", "HumanMouseDistance", "colour", "size")
   return(dataframe)
 }
 

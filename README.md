@@ -1,7 +1,7 @@
 fret
 ====
 
-![marmot](https://raw.github.com/sbotond/fret/master/misc/marmot.png)
+![marmot](https://raw.github.com/kgori/fret/master/misc/marmot.png)
 
 Ferret data, scripts and html
 
